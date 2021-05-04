@@ -14,7 +14,7 @@ export class NovoContatoComponent {
   numero: string;
 
   salvar(){
-    console.log('Solicitada nova transferência');
+    console.log('novo');
     const contato = { nome: this.nome, sobrenome: this.sobrenome, email: this.email, numero: this.numero };
     this.aoSalvar.emit(contato);
 
@@ -27,6 +27,4 @@ export class NovoContatoComponent {
     this.email = "";
     this.numero = "";
   }
-
-
 }
