@@ -1,3 +1,4 @@
+import { ContatoService } from './services/contato.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,10 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sgc-app';
-  contatos: any[] = [];
+//  contatos: any[] = [];
+
+  constructor(private service: ContatoService) {}
 
   salvar($event) {
-    console.log($event);
-    this.contatos.push($event);
+    this.service.adicionar($event);
   }
 }
