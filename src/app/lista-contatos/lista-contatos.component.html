@@ -8,19 +8,19 @@
       <th class="tabela__cabecalho__conteudo">E-mail</th>
       <th class="tabela__cabecalho__conteudo">Número</th>
     </thead>
-    <tbody *ngIf="contatos.length > 0; else listaVazia">
+    <tbody *ngIf="contatos?.length > 0; else listaVazia">
       <tr class="tabela__linha" *ngFor="let contato of contatos">
         <td class="tabela__conteudo">
-          {{contato?.nome}}
+          {{contato?.primeiroNome}}
         </td>
         <td class="tabela__conteudo">
-          {{contato?.sobrenome}}
+          {{contato?.ultimoNome}}
         </td>
         <td class="tabela__conteudo">
           {{contato?.email}}
         </td>
         <td class="tabela__conteudo">
-          {{contato?.numero}}
+          {{contato?.telefone}}
         </td>
       </tr>
     </tbody>

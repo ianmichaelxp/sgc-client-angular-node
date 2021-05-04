@@ -8,23 +8,23 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class NovoContatoComponent {
 
   @Output() aoSalvar = new EventEmitter<any>();
-  nome: string;
-  sobrenome: string;
+  primeiroNome: string;
+  ultimoNome: string;
   email: string;
-  numero: string;
+  telefone: string;
 
   salvar(){
     console.log('novo');
-    const contato = { nome: this.nome, sobrenome: this.sobrenome, email: this.email, numero: this.numero };
+    const contato = { primeiroNome: this.primeiroNome, ultimoNome: this.ultimoNome, email: this.email, telefone: this.telefone };
     this.aoSalvar.emit(contato);
 
     this.limparCampos();
   }
 
   limparCampos(){
-    this.nome = "";
-    this.sobrenome = "";
+    this.primeiroNome = "";
+    this.ultimoNome = "";
     this.email = "";
-    this.numero = "";
+    this.telefone = "";
   }
 }

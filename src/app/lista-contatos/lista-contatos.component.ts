@@ -1,3 +1,4 @@
+import { Contato } from './../models/contato.model';
 import { Component, OnInit } from '@angular/core';
 import { ContatoService } from '../services/contato.service';
 
@@ -13,7 +14,10 @@ export class ListaContatosComponent implements OnInit {
   constructor(private service: ContatoService) {}
 
   ngOnInit(): void {
-    this.contatos = this.service.contatos;
+    this.service.todos().subscribe((contatos: Contato[]) => {
+      console.table(contatos)
+      this.contatos = contatos;
+    });
   }
 
 }
