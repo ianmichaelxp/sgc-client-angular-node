@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sgc-app"
+    }
+  },
+  "defaultProject": "sgc-app",
+  "cli": {
+    "analytics": false
+  }
 }
