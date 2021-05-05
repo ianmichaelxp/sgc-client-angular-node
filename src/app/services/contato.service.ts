@@ -19,8 +19,13 @@ export class ContatoService {
     return this.listaContatos;
   }
 
-  todos():Observable<Contato[]>{
+  buscarTodos():Observable<Contato[]>{
     return this.httpClient.get<Contato[]>(this.url);
+  }
+
+  cadastrar(contato: Contato) {
+
+    return this.httpClient.post<Contato>(this.url, contato);
   }
 
   adicionar(contato: any) {

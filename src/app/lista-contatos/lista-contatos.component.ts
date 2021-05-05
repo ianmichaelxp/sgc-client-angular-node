@@ -14,7 +14,7 @@ export class ListaContatosComponent implements OnInit {
   constructor(private service: ContatoService) {}
 
   ngOnInit(): void {
-    this.service.todos().subscribe((contatos: Contato[]) => {
+    this.service.buscarTodos().subscribe((contatos: Contato[]) => {
       console.table(contatos)
       this.contatos = contatos;
     });

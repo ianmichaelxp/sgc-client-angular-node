@@ -1,3 +1,5 @@
+import { Contato } from './../models/contato.model';
+import { ContatoService } from './../services/contato.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -13,12 +15,16 @@ export class NovoContatoComponent {
   email: string;
   telefone: string;
 
+  constructor(private contatoService: ContatoService){};
+
   salvar(){
     console.log('novo');
-    const contato = { primeiroNome: this.primeiroNome, ultimoNome: this.ultimoNome, email: this.email, telefone: this.telefone };
-    this.aoSalvar.emit(contato);
+    const contato: Contato = { primeiroNome: this.primeiroNome, ultimoNome: this.ultimoNome, email: this.email, telefone: this.telefone };
+    this.contatoService.cadastrar(contato).subscribe(res => {
+      console.log(res);
+      this.limparCampos();
+    }, error => console.error(error));
 
-    this.limparCampos();
   }
 
   limparCampos(){

@@ -8,11 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sgc-app';
-//  contatos: any[] = [];
 
   constructor(private service: ContatoService) {}
 
-  salvar($event) {
-    this.service.adicionar($event);
-  }
 }
