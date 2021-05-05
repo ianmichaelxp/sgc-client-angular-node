@@ -6,6 +6,7 @@ import { NovoContatoComponent } from './novo-contato/novo-contato.component';
 import { FormsModule } from '@angular/forms';
 import { ListaContatosComponent } from './lista-contatos/lista-contatos.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

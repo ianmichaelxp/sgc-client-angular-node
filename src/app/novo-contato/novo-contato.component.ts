@@ -1,6 +1,7 @@
 import { Contato } from './../models/contato.model';
 import { ContatoService } from './../services/contato.service';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-novo-contato',
@@ -15,7 +16,7 @@ export class NovoContatoComponent {
   email: string;
   telefone: string;
 
-  constructor(private contatoService: ContatoService){};
+  constructor(private contatoService: ContatoService, private router: Router){};
 
   salvar(){
     console.log('novo');
@@ -23,6 +24,7 @@ export class NovoContatoComponent {
     this.contatoService.cadastrar(contato).subscribe(res => {
       console.log(res);
       this.limparCampos();
+      this.router.navigateByUrl('lista-contatos');
     }, error => console.error(error));
 
   }
