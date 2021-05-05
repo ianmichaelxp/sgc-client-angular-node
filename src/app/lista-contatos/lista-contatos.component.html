@@ -1,0 +1,31 @@
+
+<section class="container">
+  <h2 class="titulo">Contatos</h2>
+  <table class="tabela">
+    <thead class="tabela__cabecalho">
+      <th class="tabela__cabecalho__conteudo">Nome</th>
+      <th class="tabela__cabecalho__conteudo">Último nome</th>
+      <th class="tabela__cabecalho__conteudo">E-mail</th>
+      <th class="tabela__cabecalho__conteudo">Número</th>
+    </thead>
+    <tbody *ngIf="contatos?.length > 0; else listaVazia">
+      <tr class="tabela__linha" *ngFor="let contato of contatos">
+        <td class="tabela__conteudo">
+          {{contato?.primeiroNome}}
+        </td>
+        <td class="tabela__conteudo">
+          {{contato?.ultimoNome}}
+        </td>
+        <td class="tabela__conteudo">
+          {{contato?.email}}
+        </td>
+        <td class="tabela__conteudo">
+          {{contato?.telefone}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #listaVazia>
+    <p>Nenhum contato encontrado</p>
+  </ng-template>
+</section>
