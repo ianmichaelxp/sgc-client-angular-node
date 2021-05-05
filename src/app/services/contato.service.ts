@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Contato } from '../models/contato.model';
+import { Contato, Pageable, RootObject } from '../models/contato.model';
 import { Observable } from 'rxjs';
 
 
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ContatoService {
   private listaContatos: any[];
-  private url = 'http://localhost:3000/content';
+  private url = 'http://localhost:8080/api/contatos';
 
   constructor(private httpClient: HttpClient) {
     this.listaContatos = [];
@@ -23,10 +23,20 @@ export class ContatoService {
     return this.httpClient.get<Contato[]>(this.url);
   }
 
-  cadastrar(contato: Contato) {
+  buscarTodosPageable():Observable<RootObject>{
+    return this.httpClient.get<RootObject>(this.url);
+  }
+
+  cadastrarPageable(contato: Contato) {
 
     return this.httpClient.post<Contato>(this.url, contato);
   }
+
+
+  // cadastrar(contato: Contato) {
+
+  //   return this.httpClient.post<Contato>(this.url, contato);
+  // }
 
   adicionar(contato: any) {
     this.listaContatos.push(contato);
