@@ -27,17 +27,18 @@ export class NovoContatoComponent implements OnInit{
   salvar(){
     console.log('novo');
     const contato: Contato = { primeiroNome: this.primeiroNome, ultimoNome: this.ultimoNome, email: this.email, telefones: this.telefones };
-    // this.contatoService.cadastrar(contato).subscribe(res => {
-    //   console.log(res);
-    //   this.limparCampos();
-    //   this.router.navigateByUrl('lista-contatos');
-    // }, error => console.error(error));
 
-    this.contatoService.cadastrarPageable(contato).subscribe(res => {
+    this.contatoService.cadastrar(contato).subscribe(res => {
       console.log(res);
       this.limparCampos();
       this.router.navigateByUrl('lista-contatos');
     }, error => console.error(error));
+
+    // this.contatoService.cadastrarPageable(contato).subscribe(res => {
+    //   console.log(res);
+    //   this.limparCampos();
+    //   this.router.navigateByUrl('lista-contatos');
+    // }, error => console.error(error));
 
   }
 
@@ -45,6 +46,8 @@ export class NovoContatoComponent implements OnInit{
     this.primeiroNome = "";
     this.ultimoNome = "";
     this.email = "";
-    this.telefones = [];
+    this.telefones = [{
+      "numero":""
+    }];
   }
 }

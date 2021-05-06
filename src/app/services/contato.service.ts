@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class ContatoService {
   private listaContatos: any[];
-  private url = 'http://localhost:8080/api/contatos';
+  //private url = 'http://localhost:8080/api/contatos';
+  private url = 'http://localhost:3000/content';
 
   constructor(private httpClient: HttpClient) {
     this.listaContatos = [];
@@ -19,8 +20,8 @@ export class ContatoService {
     return this.listaContatos;
   }
 
-  buscarTodos():Observable<Contato[]>{
-    return this.httpClient.get<Contato[]>(this.url);
+  adicionar(contato: any) {
+    this.listaContatos.push(contato);
   }
 
   buscarTodosPageable():Observable<RootObject>{
@@ -32,14 +33,16 @@ export class ContatoService {
     return this.httpClient.post<Contato>(this.url, contato);
   }
 
-
-  // cadastrar(contato: Contato) {
-
-  //   return this.httpClient.post<Contato>(this.url, contato);
-  // }
-
-  adicionar(contato: any) {
-    this.listaContatos.push(contato);
+  buscarTodos():Observable<Contato[]>{
+    return this.httpClient.get<Contato[]>(this.url);
   }
 
+  cadastrar(contato: Contato) {
+
+    return this.httpClient.post<Contato>(this.url, contato);
+  }
+
+  excluirContato(id: number){
+    return this.httpClient.delete<Contato>(this.url.concat(`/${id}`));
+  }
 }
