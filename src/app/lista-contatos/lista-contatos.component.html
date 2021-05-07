@@ -1,5 +1,13 @@
 
 <section class="container">
+
+  <form class="formulario" >
+    <div class="form-field">
+      <label class="form-field__label" for="nome">Pesquisar nome ou e-mail</label>
+      <input class="form-field__input" id="nome" type="text" name="nome"/>
+    </div>
+  </form>
+
   <h2 class="titulo">Contatos</h2>
   <table class="tabela">
     <thead class="tabela__cabecalho">
@@ -7,6 +15,8 @@
       <th class="tabela__cabecalho__conteudo">Último nome</th>
       <th class="tabela__cabecalho__conteudo">E-mail</th>
       <th class="tabela__cabecalho__conteudo">Número</th>
+      <th class="tabela__cabecalho__conteudo"></th>
+
     </thead>
     <tbody *ngIf="contatos?.length > 0; else listaVazia">
       <tr class="tabela__linha" *ngFor="let contato of contatos">
@@ -20,7 +30,10 @@
           {{contato?.email}}
         </td>
         <td class="tabela__conteudo">
-          {{contato?.telefone}}
+          {{contato?.telefones[0].numero}}
+        </td>
+        <td class="tabela__conteudo">
+          <button (click)="onDelete(contato.id)">Excluir</button>
         </td>
       </tr>
     </tbody>

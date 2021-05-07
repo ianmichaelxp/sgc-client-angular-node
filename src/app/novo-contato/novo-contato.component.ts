@@ -1,6 +1,6 @@
-import { Contato } from './../models/contato.model';
+import { Contato, Telefone } from './../models/contato.model';
 import { ContatoService } from './../services/contato.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,24 +8,37 @@ import { Router } from '@angular/router';
   templateUrl: './novo-contato.component.html',
   styleUrls: ['./novo-contato.component.scss']
 })
-export class NovoContatoComponent {
+export class NovoContatoComponent implements OnInit{
 
   @Output() aoSalvar = new EventEmitter<any>();
   primeiroNome: string;
   ultimoNome: string;
   email: string;
-  telefone: string;
+  telefones: Telefone[];
 
   constructor(private contatoService: ContatoService, private router: Router){};
 
+  ngOnInit(): void {
+    this.telefones = [{
+      "numero":""
+    }];
+  }
+
   salvar(){
     console.log('novo');
-    const contato: Contato = { primeiroNome: this.primeiroNome, ultimoNome: this.ultimoNome, email: this.email, telefone: this.telefone };
-    this.contatoService.cadastrar(contato).subscribe(res => {
+    const contato: Contato = { primeiroNome: this.primeiroNome, ultimoNome: this.ultimoNome, email: this.email, telefones: this.telefones };
+
+    this.contatoService.cadastrarPageable(contato).subscribe(res => {
       console.log(res);
       this.limparCampos();
       this.router.navigateByUrl('lista-contatos');
     }, error => console.error(error));
+
+    // this.contatoService.cadastrarPageable(contato).subscribe(res => {
+    //   console.log(res);
+    //   this.limparCampos();
+    //   this.router.navigateByUrl('lista-contatos');
+    // }, error => console.error(error));
 
   }
 
@@ -33,6 +46,8 @@ export class NovoContatoComponent {
     this.primeiroNome = "";
     this.ultimoNome = "";
     this.email = "";
-    this.telefone = "";
+    this.telefones = [{
+      "numero":""
+    }];
   }
 }
