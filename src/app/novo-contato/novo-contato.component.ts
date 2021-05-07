@@ -28,7 +28,7 @@ export class NovoContatoComponent implements OnInit{
     console.log('novo');
     const contato: Contato = { primeiroNome: this.primeiroNome, ultimoNome: this.ultimoNome, email: this.email, telefones: this.telefones };
 
-    this.contatoService.cadastrar(contato).subscribe(res => {
+    this.contatoService.cadastrarPageable(contato).subscribe(res => {
       console.log(res);
       this.limparCampos();
       this.router.navigateByUrl('lista-contatos');
